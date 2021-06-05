@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package fyreplace.protos;
+option csharp_namespace = "Fyreplace.Protos";
+option java_generate_equals_and_hash = true;
+option java_multiple_files = true;
+option java_package = "app.fyreplace.protos";
+option objc_class_prefix = "FPB";
+
+message StringId {
+    string id = 1;
+}
+
+message IntId {
+    int64 id = 1;
+}

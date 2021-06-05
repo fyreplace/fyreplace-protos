@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package fyreplace.protos;
+option csharp_namespace = "Fyreplace.Protos";
+option java_generate_equals_and_hash = true;
+option java_multiple_files = true;
+option java_package = "app.fyreplace.protos";
+option objc_class_prefix = "FPB";
+
+import "google/protobuf/empty.proto";
+import "protos/comment.proto";
+import "protos/pagination.proto";
+import "protos/post.proto";
+import "protos/user.proto";
+
+message Notification {
+    uint32 count = 1;
+    bool is_flag = 2;
+    oneof target {
+        Profile user = 10;
+        Post post = 11;
+        Comment comment = 12;
+    }
+}
+
+message Notifications {
+    repeated Notification notifications = 1;
+    Cursor previous = 2;
+    Cursor next = 3;
+}
+
+message NotificationCount {
+    uint32 count = 1;
+}
+
+service NotificationService {
+    rpc Count (google.protobuf.Empty) returns (NotificationCount);
+    rpc List (stream Page) returns (stream Notifications);
+    rpc Clear (google.protobuf.Empty) returns (google.protobuf.Empty);
+}
