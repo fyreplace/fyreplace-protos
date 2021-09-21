@@ -11,7 +11,3 @@ option swift_prefix = "FPB";
 message StringId {
     string id = 1;
 }
-
-message IntId {
-    int64 id = 1;
-}

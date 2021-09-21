@@ -75,7 +75,7 @@ message Client {
 }
 
 message Connection {
-    int64 id = 1;
+    string id = 1;
     Client client = 2;
 }
 
@@ -115,7 +115,7 @@ service AccountService {
 
     rpc ListConnections (google.protobuf.Empty) returns (Connections);
     rpc Connect (Credentials) returns (Token);
-    rpc Disconnect (IntId) returns (google.protobuf.Empty);
+    rpc Disconnect (StringId) returns (google.protobuf.Empty);
     rpc DisconnectAll (google.protobuf.Empty) returns (google.protobuf.Empty);
 }
 
