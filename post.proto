@@ -5,8 +5,8 @@ option csharp_namespace = "Fyreplace.Protos";
 option java_generate_equals_and_hash = true;
 option java_multiple_files = true;
 option java_package = "app.fyreplace.protos";
-option objc_class_prefix = "FPB";
-option swift_prefix = "FPB";
+option objc_class_prefix = "FP";
+option swift_prefix = "FP";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
