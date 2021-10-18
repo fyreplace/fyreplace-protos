@@ -15,10 +15,10 @@ import "protos/image.proto";
 
 message Profile {
     string id = 1;
-    Rank rank = 3;
-    bool is_banned = 5;
-    string username = 6;
-    Image avatar = 7;
+    Rank rank = 2;
+    bool is_banned = 3;
+    string username = 4;
+    Image avatar = 5;
 }
 
 message User {
