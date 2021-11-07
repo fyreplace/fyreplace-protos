@@ -12,6 +12,7 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 import "protos/id.proto";
 import "protos/image.proto";
+import "protos/pagination.proto";
 
 message Profile {
     string id = 1;
@@ -34,6 +35,8 @@ message User {
 
 message Profiles {
     repeated Profile profiles = 1;
+    Cursor previous = 2;
+    Cursor next = 3;
 }
 
 message UserCreation {
@@ -129,7 +132,7 @@ service UserService {
     rpc SendEmailUpdateEmail (Email) returns (google.protobuf.Empty);
     rpc ConfirmEmailUpdate (Token) returns (google.protobuf.Empty);
 
-    rpc ListBlocked (google.protobuf.Empty) returns (Profiles);
+    rpc ListBlocked (stream Page) returns (stream Profiles);
     rpc UpdateBlock (Block) returns (google.protobuf.Empty);
 
     rpc Report (StringId) returns (google.protobuf.Empty);
