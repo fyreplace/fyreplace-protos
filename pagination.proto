@@ -28,5 +28,6 @@ message Page {
     oneof position {
         Header header = 10;
         Cursor cursor = 11;
+        uint64 limit = 12;
     }
 }
