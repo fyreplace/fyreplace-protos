@@ -53,10 +53,11 @@ message Post {
     string id = 1;
     Profile author = 2;
     bool is_anonymous = 3;
-    google.protobuf.Timestamp date_created = 4;
-    google.protobuf.Timestamp date_seen = 5;
-    bool is_preview = 6;
-    repeated Chapter chapters = 7;
+    bool is_subscribed = 4;
+    google.protobuf.Timestamp date_created = 5;
+    google.protobuf.Timestamp date_seen = 6;
+    bool is_preview = 7;
+    repeated Chapter chapters = 8;
 }
 
 message Posts {
