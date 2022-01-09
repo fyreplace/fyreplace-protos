@@ -23,14 +23,10 @@ message Profile {
 }
 
 message User {
-    string id = 1;
+    Profile profile = 1;
     google.protobuf.Timestamp date_joined = 2;
-    Rank rank = 3;
-    bool is_banned = 4;
-    string username = 5;
-    Image avatar = 6;
-    string bio = 7;
-    string email = 8;
+    string bio = 3;
+    string email = 4;
 }
 
 message Profiles {
