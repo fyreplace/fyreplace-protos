@@ -18,8 +18,9 @@ message Profile {
     string id = 1;
     Rank rank = 2;
     bool is_banned = 3;
-    string username = 4;
-    Image avatar = 5;
+    bool is_blocked = 4;
+    string username = 5;
+    Image avatar = 6;
 }
 
 message User {
