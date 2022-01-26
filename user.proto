@@ -28,6 +28,7 @@ message User {
     google.protobuf.Timestamp date_joined = 2;
     string bio = 3;
     string email = 4;
+    int32 blocked_users = 5;
 }
 
 message Profiles {
