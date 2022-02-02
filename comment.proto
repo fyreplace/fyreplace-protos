@@ -15,7 +15,7 @@ import "protos/pagination.proto";
 import "protos/user.proto";
 
 message Comment {
-    string id = 1;
+    bytes id = 1;
     Profile author = 2;
     google.protobuf.Timestamp date_created = 3;
     bool is_deleted = 4;
@@ -28,14 +28,14 @@ message Comments {
 }
 
 message CommentCreation {
-    string post_id = 1;
+    bytes post_id = 1;
     string text = 2;
 }
 
 service CommentService {
     rpc List (stream Page) returns (stream Comment);
-    rpc Create (CommentCreation) returns (StringId);
-    rpc Delete (StringId) returns (google.protobuf.Empty);
-    rpc Report (StringId) returns (google.protobuf.Empty);
-    rpc Absolve (StringId) returns (google.protobuf.Empty);
+    rpc Create (CommentCreation) returns (Id);
+    rpc Delete (Id) returns (google.protobuf.Empty);
+    rpc Report (Id) returns (google.protobuf.Empty);
+    rpc Absolve (Id) returns (google.protobuf.Empty);
 }

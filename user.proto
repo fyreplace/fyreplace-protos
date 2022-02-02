@@ -15,7 +15,7 @@ import "protos/image.proto";
 import "protos/pagination.proto";
 
 message Profile {
-    string id = 1;
+    bytes id = 1;
     Rank rank = 2;
     bool is_banned = 3;
     bool is_blocked = 4;
@@ -76,7 +76,7 @@ message Client {
 }
 
 message Connection {
-    string id = 1;
+    bytes id = 1;
     Client client = 2;
 }
 
@@ -85,17 +85,17 @@ message Connections {
 }
 
 message Block {
-    string id = 1;
+    bytes id = 1;
     bool blocked = 2;
 }
 
 message BanSentence {
-    string id = 1;
+    bytes id = 1;
     int32 days = 2;
 }
 
 message Promotion {
-    string id = 1;
+    bytes id = 1;
     Rank rank = 2;
 }
 
@@ -116,12 +116,12 @@ service AccountService {
 
     rpc ListConnections (google.protobuf.Empty) returns (Connections);
     rpc Connect (Credentials) returns (Token);
-    rpc Disconnect (StringId) returns (google.protobuf.Empty);
+    rpc Disconnect (Id) returns (google.protobuf.Empty);
     rpc DisconnectAll (google.protobuf.Empty) returns (google.protobuf.Empty);
 }
 
 service UserService {
-    rpc Retrieve (StringId) returns (User);
+    rpc Retrieve (Id) returns (User);
     rpc RetrieveMe (google.protobuf.Empty) returns (User);
 
     rpc UpdateAvatar (stream ImageChunk) returns (google.protobuf.Empty);
@@ -133,8 +133,8 @@ service UserService {
     rpc ListBlocked (stream Page) returns (stream Profiles);
     rpc UpdateBlock (Block) returns (google.protobuf.Empty);
 
-    rpc Report (StringId) returns (google.protobuf.Empty);
-    rpc Absolve (StringId) returns (google.protobuf.Empty);
+    rpc Report (Id) returns (google.protobuf.Empty);
+    rpc Absolve (Id) returns (google.protobuf.Empty);
     rpc Ban (BanSentence) returns (google.protobuf.Empty);
     rpc Promote (Promotion) returns (google.protobuf.Empty);
 }

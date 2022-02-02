@@ -11,7 +11,7 @@ option swift_prefix = "FP";
 message Header {
     bool forward = 1;
     uint32 size = 2;
-    string context_id = 3;
+    bytes context_id = 3;
 }
 
 message KeyValuePair {

@@ -20,12 +20,12 @@ message ChapterImage {
 }
 
 message ChapterLocation {
-    string post_id = 1;
+    bytes post_id = 1;
     uint32 position = 2;
 }
 
 message ChapterRelocation {
-    string post_id = 1;
+    bytes post_id = 1;
     uint32 from_position = 2;
     uint32 to_position = 3;
 }
@@ -50,7 +50,7 @@ message ChapterImageUpdate {
 }
 
 message Post {
-    string id = 1;
+    bytes id = 1;
     Profile author = 2;
     bool is_anonymous = 3;
     bool is_subscribed = 4;
@@ -67,17 +67,17 @@ message Posts {
 }
 
 message Publication {
-    string id = 1;
+    bytes id = 1;
     bool anonymous = 2;
 }
 
 message Subscription {
-    string id = 1;
+    bytes id = 1;
     bool subscribed = 2;
 }
 
 message Vote {
-    string post_id = 1;
+    bytes post_id = 1;
     bool spread = 2;
 }
 
@@ -87,13 +87,13 @@ service PostService {
     rpc ListOwnPosts (stream Page) returns (stream Posts);
     rpc ListDrafts (stream Page) returns (stream Posts);
 
-    rpc Retrieve (StringId) returns (Post);
-    rpc Create (google.protobuf.Empty) returns (StringId);
+    rpc Retrieve (Id) returns (Post);
+    rpc Create (google.protobuf.Empty) returns (Id);
     rpc Publish (Publication) returns (google.protobuf.Empty);
-    rpc Delete (StringId) returns (google.protobuf.Empty);
+    rpc Delete (Id) returns (google.protobuf.Empty);
     rpc UpdateSubscription (Subscription) returns (google.protobuf.Empty);
-    rpc Report (StringId) returns (google.protobuf.Empty);
-    rpc Absolve (StringId) returns (google.protobuf.Empty);
+    rpc Report (Id) returns (google.protobuf.Empty);
+    rpc Absolve (Id) returns (google.protobuf.Empty);
 }
 
 service ChapterService {

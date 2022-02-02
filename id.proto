@@ -8,6 +8,6 @@ option java_package = "app.fyreplace.protos";
 option objc_class_prefix = "FP";
 option swift_prefix = "FP";
 
-message StringId {
-    string id = 1;
+message Id {
+    bytes id = 1;
 }
