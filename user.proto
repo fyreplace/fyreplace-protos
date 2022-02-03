@@ -40,7 +40,6 @@ message Profiles {
 message UserCreation {
     string email = 1;
     string username = 2;
-    string password = 3;
 }
 
 message Bio {
@@ -49,16 +48,6 @@ message Bio {
 
 message Email {
     string email = 1;
-}
-
-message Password {
-    string password = 1;
-}
-
-message Credentials {
-    string identifier = 1;
-    string password = 2;
-    Client client = 3;
 }
 
 message Token {
@@ -111,11 +100,10 @@ service AccountService {
     rpc Delete (google.protobuf.Empty) returns (google.protobuf.Empty);
     rpc SendActivationEmail (Email) returns (google.protobuf.Empty);
     rpc ConfirmActivation (ConnectionToken) returns (Token);
-    rpc SendRecoveryEmail (Email) returns (google.protobuf.Empty);
-    rpc ConfirmRecovery (ConnectionToken) returns (Token);
 
     rpc ListConnections (google.protobuf.Empty) returns (Connections);
-    rpc Connect (Credentials) returns (Token);
+    rpc SendConnectionEmail (Email) returns (google.protobuf.Empty);
+    rpc ConfirmConnection (ConnectionToken) returns (Token);
     rpc Disconnect (Id) returns (google.protobuf.Empty);
     rpc DisconnectAll (google.protobuf.Empty) returns (google.protobuf.Empty);
 }
@@ -126,7 +114,6 @@ service UserService {
 
     rpc UpdateAvatar (stream ImageChunk) returns (google.protobuf.Empty);
     rpc UpdateBio (Bio) returns (google.protobuf.Empty);
-    rpc UpdatePassword (Password) returns (google.protobuf.Empty);
     rpc SendEmailUpdateEmail (Email) returns (google.protobuf.Empty);
     rpc ConfirmEmailUpdate (Token) returns (google.protobuf.Empty);
 
