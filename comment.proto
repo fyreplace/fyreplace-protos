@@ -33,7 +33,7 @@ message CommentCreation {
 }
 
 service CommentService {
-    rpc List (stream Page) returns (stream Comment);
+    rpc List (stream Page) returns (stream Comments);
     rpc Create (CommentCreation) returns (Id);
     rpc Delete (Id) returns (google.protobuf.Empty);
     rpc Report (Id) returns (google.protobuf.Empty);
