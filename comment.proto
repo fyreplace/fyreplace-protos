@@ -24,7 +24,7 @@ message Comment {
 
 message Comments {
     repeated Comment comments = 1;
-    uint64 count = 2;
+    uint32 count = 2;
 }
 
 message CommentCreation {
