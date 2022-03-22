@@ -59,6 +59,12 @@ message ConnectionToken {
     Client client = 2;
 }
 
+message ConnectionCredentials {
+    string email = 1;
+    string password = 2;
+    Client client = 3;
+}
+
 message Client {
     string hardware = 1;
     string software = 2;
@@ -104,6 +110,7 @@ service AccountService {
     rpc ListConnections (google.protobuf.Empty) returns (Connections);
     rpc SendConnectionEmail (Email) returns (google.protobuf.Empty);
     rpc ConfirmConnection (ConnectionToken) returns (Token);
+    rpc Connect (ConnectionCredentials) returns (Token);
     rpc Disconnect (Id) returns (google.protobuf.Empty);
     rpc DisconnectAll (google.protobuf.Empty) returns (google.protobuf.Empty);
 }
