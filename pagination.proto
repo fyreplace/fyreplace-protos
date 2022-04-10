@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package fyreplace.protos;
+option csharp_namespace = "Fyreplace.Protos";
+option java_generate_equals_and_hash = true;
+option java_multiple_files = true;
+option java_package = "app.fyreplace.protos";
+option objc_class_prefix = "FP";
+option swift_prefix = "FP";
+
+message Header {
+    bool forward = 1;
+    uint32 size = 2;
+    bytes context_id = 3;
+}
+
+message KeyValuePair {
+    string key = 1;
+    string value = 2;
+}
+
+message Cursor {
+    repeated KeyValuePair data = 1;
+    bool is_next = 2;
+}
+
+message Page {
+    oneof position {
+        Header header = 10;
+        Cursor cursor = 11;
+        uint32 offset = 12;
+    }
+}

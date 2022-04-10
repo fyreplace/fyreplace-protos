@@ -1,0 +1,134 @@
+syntax = "proto3";
+
+package fyreplace.protos;
+option csharp_namespace = "Fyreplace.Protos";
+option java_generate_equals_and_hash = true;
+option java_multiple_files = true;
+option java_package = "app.fyreplace.protos";
+option objc_class_prefix = "FP";
+option swift_prefix = "FP";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+import "protos/id.proto";
+import "protos/image.proto";
+import "protos/pagination.proto";
+
+message Profile {
+    bytes id = 1;
+    Rank rank = 2;
+    bool is_banned = 3;
+    bool is_blocked = 4;
+    string username = 5;
+    Image avatar = 6;
+}
+
+message User {
+    Profile profile = 1;
+    google.protobuf.Timestamp date_joined = 2;
+    string bio = 3;
+    string email = 4;
+    uint32 blocked_users = 5;
+}
+
+message Profiles {
+    repeated Profile profiles = 1;
+    Cursor previous = 2;
+    Cursor next = 3;
+}
+
+message UserCreation {
+    string email = 1;
+    string username = 2;
+}
+
+message Bio {
+    string bio = 1;
+}
+
+message Email {
+    string email = 1;
+}
+
+message Token {
+    string token = 1;
+}
+
+message ConnectionToken {
+    string token = 1;
+    Client client = 2;
+}
+
+message ConnectionCredentials {
+    string email = 1;
+    string password = 2;
+    Client client = 3;
+}
+
+message Client {
+    string hardware = 1;
+    string software = 2;
+}
+
+message Connection {
+    bytes id = 1;
+    Client client = 2;
+}
+
+message Connections {
+    repeated Connection connections = 1;
+}
+
+message Block {
+    bytes id = 1;
+    bool blocked = 2;
+}
+
+message BanSentence {
+    bytes id = 1;
+    uint32 days = 2;
+}
+
+message Promotion {
+    bytes id = 1;
+    Rank rank = 2;
+}
+
+enum Rank {
+    RANK_UNSPECIFIED = 0;
+    RANK_CITIZEN = 1;
+    RANK_STAFF = 2;
+    RANK_SUPERUSER = 3;
+}
+
+service AccountService {
+    rpc Create (UserCreation) returns (google.protobuf.Empty);
+    rpc Delete (google.protobuf.Empty) returns (google.protobuf.Empty);
+    rpc SendActivationEmail (Email) returns (google.protobuf.Empty);
+    rpc ConfirmActivation (ConnectionToken) returns (Token);
+
+    rpc ListConnections (google.protobuf.Empty) returns (Connections);
+    rpc SendConnectionEmail (Email) returns (google.protobuf.Empty);
+    rpc ConfirmConnection (ConnectionToken) returns (Token);
+    rpc Connect (ConnectionCredentials) returns (Token);
+    rpc Disconnect (Id) returns (google.protobuf.Empty);
+    rpc DisconnectAll (google.protobuf.Empty) returns (google.protobuf.Empty);
+}
+
+service UserService {
+    rpc Retrieve (Id) returns (User);
+    rpc RetrieveMe (google.protobuf.Empty) returns (User);
+
+    rpc UpdateAvatar (stream ImageChunk) returns (google.protobuf.Empty);
+    rpc UpdateBio (Bio) returns (google.protobuf.Empty);
+    rpc SendEmailUpdateEmail (Email) returns (google.protobuf.Empty);
+    rpc ConfirmEmailUpdate (Token) returns (google.protobuf.Empty);
+
+    rpc ListBlocked (stream Page) returns (stream Profiles);
+    rpc UpdateBlock (Block) returns (google.protobuf.Empty);
+
+    rpc Report (Id) returns (google.protobuf.Empty);
+    rpc Absolve (Id) returns (google.protobuf.Empty);
+    rpc Ban (BanSentence) returns (google.protobuf.Empty);
+    rpc Promote (Promotion) returns (google.protobuf.Empty);
+}
