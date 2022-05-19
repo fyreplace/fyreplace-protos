@@ -100,6 +100,6 @@ service ChapterService {
     rpc Create (ChapterLocation) returns (google.protobuf.Empty);
     rpc Move (ChapterRelocation) returns (google.protobuf.Empty);
     rpc UpdateText (ChapterTextUpdate) returns (google.protobuf.Empty);
-    rpc UpdateImage (stream ChapterImageUpdate) returns (google.protobuf.Empty);
+    rpc UpdateImage (stream ChapterImageUpdate) returns (Image);
     rpc Delete (ChapterLocation) returns (google.protobuf.Empty);
 }

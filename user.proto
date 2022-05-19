@@ -119,7 +119,7 @@ service UserService {
     rpc Retrieve (Id) returns (User);
     rpc RetrieveMe (google.protobuf.Empty) returns (User);
 
-    rpc UpdateAvatar (stream ImageChunk) returns (google.protobuf.Empty);
+    rpc UpdateAvatar (stream ImageChunk) returns (Image);
     rpc UpdateBio (Bio) returns (google.protobuf.Empty);
     rpc SendEmailUpdateEmail (Email) returns (google.protobuf.Empty);
     rpc ConfirmEmailUpdate (Token) returns (google.protobuf.Empty);
