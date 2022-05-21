@@ -58,6 +58,7 @@ message Post {
     google.protobuf.Timestamp date_seen = 6;
     bool is_preview = 7;
     repeated Chapter chapters = 8;
+    uint32 chapter_count = 9;
 }
 
 message Posts {
