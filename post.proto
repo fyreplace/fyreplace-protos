@@ -55,10 +55,10 @@ message Post {
     bool is_anonymous = 3;
     bool is_subscribed = 4;
     google.protobuf.Timestamp date_created = 5;
-    google.protobuf.Timestamp date_seen = 6;
-    bool is_preview = 7;
-    repeated Chapter chapters = 8;
-    uint32 chapter_count = 9;
+    bool is_preview = 6;
+    repeated Chapter chapters = 7;
+    uint32 chapter_count = 8;
+    uint32 comments_read = 9;
 }
 
 message Posts {
