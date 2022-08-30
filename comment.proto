@@ -16,10 +16,11 @@ import "protos/user.proto";
 
 message Comment {
     bytes id = 1;
-    Profile author = 2;
-    google.protobuf.Timestamp date_created = 3;
-    bool is_deleted = 4;
-    string text = 5;
+    uint32 position = 2;
+    Profile author = 3;
+    google.protobuf.Timestamp date_created = 4;
+    bool is_deleted = 5;
+    string text = 6;
 }
 
 message Comments {
