@@ -15,9 +15,6 @@ import "protos/image.proto";
 import "protos/pagination.proto";
 import "protos/user.proto";
 
-message ChapterImage {
-    Image image = 1;
-}
 
 message ChapterLocation {
     bytes post_id = 1;
@@ -44,8 +41,8 @@ message ChapterTextUpdate {
 
 message ChapterImageUpdate {
     oneof update {
-        ChapterLocation location = 1;
-        ImageChunk chunk = 2;
+        ChapterLocation location = 10;
+        ImageChunk chunk = 11;
     }
 }
 
