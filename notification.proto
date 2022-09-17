@@ -34,8 +34,20 @@ message NotificationCount {
     uint32 count = 1;
 }
 
+enum MessagingService {
+    MESSAGING_SERVICE_UNSPECIFIED = 0;
+    MESSAGING_SERVICE_APNS = 1;
+    MESSAGING_SERVICE_FCM = 2;
+}
+
+message MessagingToken {
+    MessagingService service = 1;
+    string token = 2;
+}
+
 service NotificationService {
     rpc Count (google.protobuf.Empty) returns (NotificationCount);
     rpc List (stream Page) returns (stream Notifications);
     rpc Clear (google.protobuf.Empty) returns (google.protobuf.Empty);
+    rpc RegisterToken(MessagingToken) returns (google.protobuf.Empty);
 }
