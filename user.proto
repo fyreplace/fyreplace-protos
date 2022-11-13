@@ -17,10 +17,11 @@ import "protos/pagination.proto";
 message Profile {
     bytes id = 1;
     Rank rank = 2;
-    bool is_banned = 3;
-    bool is_blocked = 4;
-    string username = 5;
-    Image avatar = 6;
+    bool is_deleted = 3;
+    bool is_banned = 4;
+    bool is_blocked = 5;
+    string username = 6;
+    Image avatar = 7;
 }
 
 message User {
